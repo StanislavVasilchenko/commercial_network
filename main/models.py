@@ -21,6 +21,13 @@ class Contact(models.Model):
                                 verbose_name="company_contact",
                                 on_delete=models.CASCADE)
 
+    def __str__(self):
+        return f'{self.email} - {self.country}'
+
+    class Meta:
+        verbose_name = "Контакт"
+        verbose_name_plural = "Контакты"
+
 
 class CompanyStatus(TextChoices):
     """Модель для статуса компании
@@ -46,3 +53,11 @@ class Company(models.Model):
     provider = models.ForeignKey('self', on_delete=models.CASCADE, verbose_name="provider", blank=True, null=True)
     debt = models.FloatField(default=0, verbose_name="debt")
     date_created = models.DateField(auto_now_add=True, verbose_name="date_created")
+
+    def __str__(self):
+        return f'{self.name} | {self.status}'
+
+    class Meta:
+        verbose_name = "Компания"
+        verbose_name_plural = "Компании"
+        ordering = ["-date_created"]
