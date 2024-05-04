@@ -1,43 +1,45 @@
-from rest_framework import generics, status
+from rest_framework import generics, status, permissions
 from rest_framework.response import Response
 
 from main.models import Company, Contact
+from main.permissions import UserPermissions
 from main.serializers import CompanySerializer, ContactSerializer, CompanyUpdateSerializer
 
 
 class CompanyCreateAPIView(generics.CreateAPIView):
     queryset = Company.objects.all()
     serializer_class = CompanySerializer
+    permission_classes = (UserPermissions,)
 
 
 class CompanyListAPIView(generics.ListAPIView):
     queryset = Company.objects.all()
     serializer_class = CompanySerializer
+    permission_classes = (UserPermissions,)
 
 
 class CompanyDetailAPIView(generics.RetrieveAPIView):
     queryset = Company.objects.all()
     serializer_class = CompanySerializer
+    permission_classes = (UserPermissions,)
 
 
 class CompanyUpdateAPIView(generics.UpdateAPIView):
     queryset = Company.objects.all()
     serializer_class = CompanyUpdateSerializer
+    permission_classes = (UserPermissions,)
 
 
-
-
-
-
-
+class CompanyDeleteAPIView(generics.DestroyAPIView):
+    queryset = Company.objects.all()
+    serializer_class = CompanySerializer
+    permission_classes = (UserPermissions,)
 
 
 class ContactCreateAPIView(generics.CreateAPIView):
     queryset = Contact.objects.all()
     serializer_class = ContactSerializer
-
-
-
+    permission_classes = (UserPermissions,)
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
