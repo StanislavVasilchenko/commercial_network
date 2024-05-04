@@ -19,3 +19,10 @@ class CompanySerializer(serializers.ModelSerializer):
     class Meta:
         model = Company
         fields = ['status', 'name', 'provider', 'debt', 'contacts']
+
+
+class CompanyUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Company
+        exclude = ['debt']
+
