@@ -2,7 +2,7 @@ from rest_framework import generics, status
 from rest_framework.response import Response
 
 from main.models import Company, Contact
-from main.serializers import CompanySerializer, ContactSerializer
+from main.serializers import CompanySerializer, ContactSerializer, CompanyUpdateSerializer
 
 
 class CompanyCreateAPIView(generics.CreateAPIView):
@@ -15,14 +15,29 @@ class CompanyListAPIView(generics.ListAPIView):
     serializer_class = CompanySerializer
 
 
+class CompanyDetailAPIView(generics.RetrieveAPIView):
+    queryset = Company.objects.all()
+    serializer_class = CompanySerializer
+
+
+class CompanyUpdateAPIView(generics.UpdateAPIView):
+    queryset = Company.objects.all()
+    serializer_class = CompanyUpdateSerializer
+
+
+
+
+
+
+
+
+
 class ContactCreateAPIView(generics.CreateAPIView):
     queryset = Contact.objects.all()
     serializer_class = ContactSerializer
 
 
-class CompanyDetailAPIView(generics.RetrieveAPIView):
-    queryset = Company.objects.all()
-    serializer_class = CompanySerializer
+
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
