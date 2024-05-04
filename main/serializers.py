@@ -6,7 +6,7 @@ from main.models import Company, Contact
 class ContactSerializer(serializers.ModelSerializer):
     class Meta:
         model = Contact
-        fields = '__all__'
+        fields = ['email', 'country', 'city', 'street', 'house_number']
 
 
 class CompanySerializer(serializers.ModelSerializer):
