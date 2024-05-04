@@ -19,6 +19,11 @@ class ContactCreateAPIView(generics.CreateAPIView):
     queryset = Contact.objects.all()
     serializer_class = ContactSerializer
 
+
+class CompanyDetailAPIView(generics.RetrieveAPIView):
+    queryset = Company.objects.all()
+    serializer_class = CompanySerializer
+
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
