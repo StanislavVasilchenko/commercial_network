@@ -35,9 +35,9 @@ class CompanyStatus(TextChoices):
     - RETAIL_NETWORK: Розничная Сеть
     - INDIVIDUAL_ENTREPRENEUR: Индивидуальный Предприниматель
     """
-    FACTORY = "FACTORY", "Завод"
-    RETAIL_NETWORK = "RETAIL_NETWORK", "Розничная Сеть"
-    INDIVIDUAL_ENTREPRENEUR = "INDIVIDUAL_ENTREPRENEUR", "Индивидуальный Предприниматель"
+    FACTORY = ("Завод", "Завод")
+    RETAIL_NETWORK = ("Розничная Сеть", "Розничная Сеть")
+    INDIVIDUAL_ENTREPRENEUR = ("Индивидуальный Предприниматель", "Индивидуальный Предприниматель")
 
 
 class Company(models.Model):
