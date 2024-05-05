@@ -29,6 +29,13 @@ class CompanyUpdateAPIView(generics.UpdateAPIView):
     serializer_class = CompanyUpdateSerializer
     permission_classes = (UserPermissions,)
 
+    def update(self, request, *args, **kwargs):
+        instance = self.get_object()
+        if 'debt' in request.data:
+            return Response({'error': f'Вы не можете обновлять поле задолженность для {instance.name}'},
+                            status=status.HTTP_400_BAD_REQUEST)
+        return super().update(request, *args, **kwargs)
+
 
 class CompanyDeleteAPIView(generics.DestroyAPIView):
     queryset = Company.objects.all()
