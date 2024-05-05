@@ -24,5 +24,6 @@ class CompanySerializer(serializers.ModelSerializer):
 class CompanyUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Company
-        exclude = ['debt']
+        fields = '__all__'
+        read_only_fields = ['debt']
 
