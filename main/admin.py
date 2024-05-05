@@ -14,10 +14,16 @@ class ContactsAdmin(admin.ModelAdmin):
         return queryset, use_distinct
 
 
+class CityCompany(admin.TabularInline):
+    model = Contact
+    extra = 0
+
+
 @admin.register(Company)
 class CompanyAdmin(admin.ModelAdmin):
     list_display = ('name', 'status', 'provider', 'debt', 'date_created')
     actions = ['clear_debt']
+    inlines = [CityCompany]
 
     def clear_debt(self, request, queryset):
         queryset.update(debt=0)
