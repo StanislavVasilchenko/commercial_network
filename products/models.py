@@ -18,3 +18,10 @@ class Product(models.Model):
                                 verbose_name="company_name",
                                 related_name="company_products",
                                 on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "Продукт"
+        verbose_name_plural = "Продукты"
